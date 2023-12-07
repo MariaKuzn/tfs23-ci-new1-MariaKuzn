@@ -1,0 +1,13 @@
+name: myWorkflow
+
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  build:
+    name: checkout_gradle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: gradle clean build
