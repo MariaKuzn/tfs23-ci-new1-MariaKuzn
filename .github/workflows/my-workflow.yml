@@ -6,21 +6,26 @@ on:
 
 jobs:
   build:
-    name: checkout_gradle
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: gradle clean build
 
   checkstyle:
-    name: checkout_gradle
+    name: checkstyle
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - run: echo checkstyle
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run check style
+        uses: nikitasavinov/checkstyle-action@master
+        with:
+          checkstyle_config: 'config/checkstyle/checkstyle.xml'
 
   coverage:
-    name: checkout_gradle
+    name: coverage
     runs-on: ubuntu-latest
     needs: build
     steps:
