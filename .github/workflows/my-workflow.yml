@@ -39,7 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: create dir
-        run: mkdir build/test-results/test
+        run: mkdir build
       - name: Set up JDK 1.8
         uses: actions/setup-java@v2
         with:
