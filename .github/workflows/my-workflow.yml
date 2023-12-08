@@ -10,13 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: gradle clean build
       - run: mkdir tmp
+      - run: |
+            gradle clean build
+            mv build/* tmp
+
       - name: copy file
         uses: canastro/copy-file-action@master
         with:
-          source: build/*
-          target: tmp/
+          source: /build/*
+          target: /tmp/
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
