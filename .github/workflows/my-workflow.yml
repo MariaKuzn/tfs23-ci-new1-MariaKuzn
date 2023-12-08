@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: mkdir tmp
+      - run: mkdir dirForTests
       - run: |
             gradle clean build
-            mv build/test-results/test/ tmp
+            mv build/test-results/test/*.xml dirForTests
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: tmp/*.xml
+          path: dirForTests/*.xml
 
   checkstyle:
     name: checkstyle
