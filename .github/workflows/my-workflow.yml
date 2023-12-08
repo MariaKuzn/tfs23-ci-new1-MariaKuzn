@@ -13,11 +13,11 @@ jobs:
       - run: mkdir dirForTests
       - run: |
             gradle clean build
-            mv build/test-results/test/*.xml dirForTests
+            mv build/jacoco/test.exec dirForTests
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: dirForTests/*.xml
+          path: dirForTests/*.exec
 
   checkstyle:
     name: checkstyle
@@ -49,7 +49,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: my-artifact
-          path: build/test-results/test
+          path: build/jacoco/
       - name: Run Coverage
         run: |
           chmod +x gradlew
