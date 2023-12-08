@@ -13,16 +13,11 @@ jobs:
       - run: mkdir tmp
       - run: |
             gradle clean build
-            mv build/test-results/test tmp
-      - name: copy file
-        uses: canastro/copy-file-action@master
-        with:
-          source: /build/*
-          target: /tmp/
+            mv build/test-results/test/ tmp
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: tmp/testreport.xml
+          path: tmp/*.xml
 
   checkstyle:
     name: checkstyle
