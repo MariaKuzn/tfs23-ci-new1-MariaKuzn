@@ -15,8 +15,8 @@ jobs:
       - name: copy file
         uses: canastro/copy-file-action@master
         with:
-          source: build/test-result/test
-          target: tmp/testreport.xml
+          source: build/*
+          target: tmp/
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
