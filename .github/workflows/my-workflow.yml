@@ -13,8 +13,7 @@ jobs:
       - run: mkdir tmp
       - run: |
             gradle clean build
-            mv build/* tmp
-
+            mv build/test-results/test tmp
       - name: copy file
         uses: canastro/copy-file-action@master
         with:
