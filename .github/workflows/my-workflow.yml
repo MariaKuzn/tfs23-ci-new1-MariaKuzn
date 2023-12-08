@@ -11,6 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: gradle clean build
+      - run: mkdir tmp
+      - name: copy file
+        uses: canastro/copy-file-action@master
+        with:
+          source: build/test-results/test/.xml
+          target: tmp/testreport.xml
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: tmp/testreport.xml
 
   checkstyle:
     name: checkstyle
@@ -36,6 +46,13 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+      - name: create dir
+        run: mkdir build/test-results/test
+      - name: download tests from artifact
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+          path: build/test-results/test
       - name: Run Coverage
         run: |
           chmod +x gradlew
