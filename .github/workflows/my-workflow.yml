@@ -11,6 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: mkdir dirForTests
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '17'
       - run: |
             gradle clean build
             mv build/jacoco/test.exec dirForTests
