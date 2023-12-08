@@ -47,6 +47,6 @@ jobs:
           paths: |
             ${{ github.workspace }}/**/build/reports/jacoco/prodNormalDebugCoverage/prodNormalDebugCoverage.xml,
             ${{ github.workspace }}/**/build/reports/jacoco/**/debugCoverage.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: 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
           min-coverage-overall: 40
           min-coverage-changed-files: 60
